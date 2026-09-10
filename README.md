@@ -176,6 +176,6 @@ The dashboard makes it easier to identify dominant species, high-density areas, 
 
 ## 👤 Author
 
-**Santhosh V**
+**GOKUL M**
 
 Business Analytics — Task 8 (BA-T8)
