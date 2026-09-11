@@ -1,181 +1,203 @@
-# BA-T8 — Urban Tree Species Distribution & Contribution Dashboard
+# Business Category Analysis using Tree Map in Tableau
 
-[DASHBOARD](https://public.tableau.com/views/BUSINESSSALESPERFORMANCEDASHBOARD/BUSINESSSALESPERFORMANCEDASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+## 1. Project Title
 
-## 📊 Project Overview
-
-This project uses **Tableau Public** to analyze the distribution, contribution, and physical characteristics of urban tree species using an interactive dashboard.
-
-The analysis focuses on identifying the tree categories, common species, geographic areas, and growing spaces that contribute the most to the overall urban tree population.
-
-Although the source dataset is not a traditional sales or revenue dataset, the project follows the same contribution-analysis approach by using **tree count as the primary numerical measure** and supporting measures such as **Diameter at Breast Height (DBH), Height, and Width**.
+**Business Category Analysis using Tree Map in Tableau**
 
 ---
 
-## 🎯 Objective
+## 2. Objective
 
-To analyze the contribution of different tree categories and species using a **Tree Map in Tableau** and identify the categories, species, locations, and growing environments that have the greatest impact on the overall urban tree inventory.
+The objective of this project is to analyze the contribution of different business categories using Tableau Tree Map visualization and identify the categories that have the greatest impact on business performance.
 
----
-
-## ❓ Problem Statement
-
-Using the provided **Tree Species dataset**, create an interactive Tableau dashboard to:
-
-- Compare the contribution of different tree categories and common species.
-- Identify the areas with the highest tree populations.
-- Examine the relationship between tree height and trunk diameter.
-- Analyze how trees are distributed across different growing spaces.
-- Generate useful analytical insights and recommendations from the dashboard.
+The project uses sales-related data to compare product lines, deal sizes, countries, and yearly sales performance.
 
 ---
 
-## 📁 Dataset
+## 3. Dataset
 
-**Dataset:** `Tree_Species.csv`
+**Dataset Name:** Sales Data Sample
 
-The dataset contains information related to urban trees, including:
+**File Name:** `Sales_Data_Sample(1).csv`
 
-- Tree Category
-- Common Name
-- Area
-- Grow Space
-- Height
-- Width
-- Diameter at Breast Height
-- Object ID / Tree Record
+**Source:** Kaggle
 
-### Main Fields Used
-
-| Purpose | Field |
-|---|---|
-| Main Category | `TreeCategory` |
-| Sub-Category | `CommonName` |
-| Tree Count | `CNT(OBJECTID)` |
-| Tree Diameter | `AVG(DiameterAtBreastHeight)` |
-| Geographic Analysis | `Area` |
-| Growing Environment | `GrowSpace` |
-| Tree Height | `Height` |
-| Tree Width | `Width` |
+The dataset contains business sales information including product categories, sales amount, order quantity, countries, deal sizes, order status, and order dates.
 
 ---
 
-## 📈 Tableau Visualizations
+## 4. Tools Used
 
-### 1. Tree Map — Tree Population Contribution
-
-The Tree Map compares the contribution of different tree species and categories.
-
-- **Size:** `CNT(OBJECTID)`
-- **Colour:** `AVG(DiameterAtBreastHeight)`
-- **Label:** `CommonName` and tree count
-- **Detail:** `TreeCategory`
-
-Larger blocks represent species with a greater number of recorded trees, while colour helps compare their average trunk diameter.
-
-### 2. Tree Distribution by Area
-
-A horizontal bar chart compares the number of recorded trees across different geographic areas.
-
-- **Rows:** `Area`
-- **Columns:** `CNT(OBJECTID)`
-
-This visualization helps identify the areas containing the largest urban tree populations.
-
-### 3. Tree Height vs Diameter by Species
-
-A scatter plot is used to examine the relationship between tree height and Diameter at Breast Height.
-
-- **X-Axis:** `AVG(DiameterAtBreastHeight)`
-- **Y-Axis:** `AVG(Height)`
-- **Detail:** `CommonName`
-- **Size:** `CNT(OBJECTID)`
-
-This chart helps identify species that are generally taller, wider, or more mature.
-
-### 4. Tree Distribution by Growing Space
-
-A bar chart compares the number of trees found in different growing environments.
-
-- **Category:** `GrowSpace`
-- **Measure:** `CNT(OBJECTID)`
-
-This helps determine which types of growing spaces support the largest proportion of the urban tree population.
+* **Tableau Public** – Data visualization and dashboard creation
+* **CSV Dataset** – Data source
+* **Kaggle** – Dataset source
 
 ---
 
-## 🧩 Dashboard Features
+## 5. Important Dataset Fields
 
-The final Tableau dashboard combines all four visualizations into a single interactive analytical view.
-
-Interactive filters include:
-
-- Area
-- Tree Category
-- Common Name
-
-These filters allow users to explore specific geographic areas, categories, and species while automatically updating the related visualizations.
-
----
-
-## 🔎 Key Insights
-
-1. **Park Trees are the largest tree category**, containing approximately **13,906 trees**, or around **41% of the total inventory**.
-
-2. **Garry Oak is the most frequently recorded tree species**, with approximately **4,776 trees**, followed closely by **Cherry Plum** with around **4,397 trees**.
-
-3. **Fairfield and James Bay have the largest tree populations**. Together they account for approximately **40% of all recorded trees** in the dataset.
-
-4. There is a **strong positive relationship between tree height and Diameter at Breast Height**, indicating that trees with larger trunks generally tend to be taller and more mature.
-
-5. Approximately **73% of the recorded trees are located in Turf growing spaces**, making Turf the dominant growing environment in the dataset.
+| Field           | Description        |
+| --------------- | ------------------ |
+| PRODUCTLINE     | Product category   |
+| DEALSIZE        | Order/deal size    |
+| SALES           | Total sales amount |
+| QUANTITYORDERED | Quantity ordered   |
+| PRICEEACH       | Price per item     |
+| COUNTRY         | Customer country   |
+| YEAR_ID         | Order year         |
+| STATUS          | Order status       |
+| ORDERDATE       | Order date         |
 
 ---
 
-## 💡 Recommendations
+## 6. Tree Map Analysis
 
-### 1. Improve Species and Location Diversity
+A Tree Map was created to analyze sales contribution across different product lines and deal sizes.
 
-Because a large portion of the inventory is concentrated among a few tree categories and common species, future planting programs should encourage greater species and location diversity. This can improve long-term resilience and reduce dependence on a small number of dominant species.
+### Tree Map Configuration
 
-### 2. Prioritize High-Density Areas for Maintenance
+* **Size:** SUM(SALES)
+* **Color:** SUM(SALES)
+* **Category:** PRODUCTLINE
+* **Sub-category:** DEALSIZE
 
-Areas such as **Fairfield and James Bay** contain a major share of the total tree population. These locations should receive greater attention in inspection, pruning, maintenance, and long-term urban forestry planning.
-
----
-
-## 🧹 Data Preparation
-
-Before creating the visualizations, the dataset was reviewed for missing and unrealistic values.
-
-For physical-measure analysis, records with invalid values such as negative heights or widths should be excluded where appropriate so that they do not distort the scatter plot and summary statistics.
+The size of each block represents the sales contribution of the category. Larger blocks indicate higher sales.
 
 ---
 
-## 🛠️ Tools Used
+## 7. Additional Visualizations
 
-- **Tableau Public** — Dashboard development and visualization
-- **CSV Dataset** — Source data
-- **GitHub** — Project documentation and version control
+Three additional visualizations were created along with the Tree Map.
 
----
+### 7.1 Sales by Product Line
 
-## 🌐 Live Tableau Dashboard
+A horizontal bar chart was created to compare sales across different product lines.
 
-👉 **[View the Urban Tree Species Distribution & Contribution Dashboard on Tableau Public](https://public.tableau.com/views/BUSINESSSALESPERFORMANCEDASHBOARD/BUSINESSSALESPERFORMANCEDASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)**
+**Chart Type:** Bar Chart
 
----
+**Dimension:** PRODUCTLINE
 
-## 📌 Project Summary
-
-This project demonstrates how Tableau can be used to transform a large categorical dataset into an interactive dashboard. The Tree Map provides a clear view of species contribution, while the supporting bar charts and scatter plot reveal geographic concentration, growing-space distribution, and relationships between physical tree characteristics.
-
-The dashboard makes it easier to identify dominant species, high-density areas, and important patterns that can support better urban tree-management decisions.
+**Measure:** SUM(SALES)
 
 ---
 
-## 👤 Author
+### 7.2 Year-wise Sales Trend
 
-**GOKUL M**
+A line chart was created to analyze how sales changed over different years.
 
-Business Analytics — Task 8 (BA-T8)
+**Chart Type:** Line Chart
+
+**Dimension:** YEAR_ID / ORDERDATE
+
+**Measure:** SUM(SALES)
+
+---
+
+### 7.3 Sales by Country
+
+A Filled Map was created to compare sales performance across different countries.
+
+**Chart Type:** Filled Map
+
+**Geographical Field:** COUNTRY
+
+**Measure:** SUM(SALES)
+
+---
+
+## 8. Dashboard
+
+All four visualizations were combined into a single interactive dashboard named:
+
+**Business Sales Performance Dashboard**
+
+The dashboard contains:
+
+1. Sales Contribution Tree Map
+2. Sales by Product Line Bar Chart
+3. Year-wise Sales Trend Line Chart
+4. Sales by Country Filled Map
+
+---
+
+## 9. Dashboard Filters
+
+The following filters were added to make the dashboard interactive:
+
+* YEAR_ID
+* PRODUCTLINE
+* DEALSIZE
+
+The filters can be applied across worksheets using the same data source.
+
+This allows users to explore sales performance for specific years, product categories, and deal sizes.
+
+---
+
+## 10. Business Insights
+
+### Insight 1
+
+The Tree Map shows that sales contribution is not evenly distributed across all product lines. Some product categories contribute significantly more to total sales.
+
+### Insight 2
+
+Different deal sizes contribute differently to overall sales. High-value deals can have a considerable impact on total business revenue.
+
+### Insight 3
+
+Sales performance varies across countries. Some geographical markets contribute significantly more sales than others.
+
+### Insight 4
+
+The yearly sales trend shows changes in business performance over time and helps identify periods of higher and lower sales.
+
+### Insight 5
+
+The dashboard indicates that focusing on high-performing product categories and markets can help the business improve overall sales performance.
+
+---
+
+## 11. Business Recommendations
+
+### Recommendation 1 — Focus on High-Performing Products
+
+The company should prioritize high-performing product lines by maintaining sufficient inventory, improving marketing activities, and targeting customers interested in these products.
+
+### Recommendation 2 — Improve Low-Performing Markets
+
+Countries and product categories with lower sales should be analyzed further. Targeted promotions, localized marketing strategies, and improved customer engagement can be used to increase their sales contribution.
+
+---
+
+## 12. Conclusion
+
+The Tableau dashboard provides an interactive view of business sales performance. The Tree Map makes it easy to identify the product categories contributing the most to sales, while the bar chart, line chart, and filled map provide additional information about product, time-based, and geographical performance.
+
+The analysis can help businesses identify important revenue-generating categories, understand market performance, and make better data-driven decisions.
+
+---
+
+## 13. Project Structure
+
+```text
+Business Category Analysis
+│
+├── Sales_Data_Sample(1).csv
+├── Tableau Workbook
+│
+├── Visualizations
+│   ├── Sales Contribution Tree Map
+│   ├── Sales by Product Line
+│   ├── Year-wise Sales Trend
+│   └── Sales by Country
+│
+└── Business Sales Performance Dashboard
+```
+
+---
+
+## 14. Key Technologies
+
+**Tableau Public | Data Visualization | Business Analytics | Tree Map | Dashboard | Sales Analysis**
+(https://public.tableau.com/views/BUSINESSSALESPERFORMANCEDASHBOARD/BUSINESSSALESPERFORMANCEDASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
